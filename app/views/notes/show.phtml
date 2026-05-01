@@ -1,0 +1,14 @@
+<h1><?= $this->escaper->escapeHtml($note->title) ?></h1>
+
+<p>
+    <a href="/notes">Back</a>
+    |
+    <a href="/notes/<?= $this->escaper->escapeHtmlAttr($note->id) ?>/edit">Edit</a>
+</p>
+
+<form method="post" action="/notes/<?= $this->escaper->escapeHtmlAttr($note->id) ?>/delete" onsubmit="return confirm('Delete this note?');">
+    <button type="submit">Delete</button>
+</form>
+
+<h2>Raw Markdown</h2>
+<pre><?= $this->escaper->escapeHtml($note->content) ?></pre>

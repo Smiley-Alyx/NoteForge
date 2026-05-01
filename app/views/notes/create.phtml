@@ -1,0 +1,39 @@
+<h1>Create note</h1>
+
+<p><a href="/notes">Back</a></p>
+
+<?php if (!empty($errors ?? [])): ?>
+    <div>
+        <strong>Errors:</strong>
+        <ul>
+            <?php foreach ($errors as $message): ?>
+                <li><?= $this->escaper->escapeHtml((string)$message) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<form method="post" action="/notes">
+    <div>
+        <label>
+            Title
+            <input type="text" name="title" value="<?= $this->escaper->escapeHtmlAttr($note->title ?? '') ?>">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Slug
+            <input type="text" name="slug" value="<?= $this->escaper->escapeHtmlAttr($note->slug ?? '') ?>">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Content
+            <textarea name="content" rows="12" cols="80"><?= $this->escaper->escapeHtml($note->content ?? '') ?></textarea>
+        </label>
+    </div>
+
+    <button type="submit">Save</button>
+</form>

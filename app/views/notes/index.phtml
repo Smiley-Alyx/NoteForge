@@ -1,0 +1,17 @@
+<h1>Notes</h1>
+
+<p><a href="/notes/create">Create note</a></p>
+
+<?php if (count($notes ?? []) === 0): ?>
+    <p>No notes yet.</p>
+<?php endif; ?>
+
+<ul>
+    <?php foreach (($notes ?? []) as $note): ?>
+        <li>
+            <a href="/notes/<?= $this->escaper->escapeHtmlAttr($note->id) ?>">
+                <?= $this->escaper->escapeHtml($note->title) ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>

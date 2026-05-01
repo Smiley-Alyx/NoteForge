@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Phalcon\Autoload\Loader;
-use Phalcon\Di\Di;
+use Phalcon\Di\FactoryDefault;
 use Phalcon\Http\Response\ResponseInterface;
 use Phalcon\Mvc\Application;
 use Phalcon\Mvc\Router;
@@ -23,7 +23,7 @@ $loader->setNamespaces([
 ]);
 $loader->register();
 
-$di = new Di();
+$di = new FactoryDefault();
 (require dirname(__DIR__) . '/app/config/di.php')($di);
 
 $router = new Router(false);

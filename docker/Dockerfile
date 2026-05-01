@@ -54,8 +54,19 @@ RUN git clone --depth 1 https://github.com/phalcon/cphalcon.git /usr/src/cphalco
     && mkdir -p /usr/local/etc/php/conf.d \
     && echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini
 
+# php is built from source, so by default it has no loaded ini.
+# Create a minimal php.ini to load Phalcon.
+RUN printf "%s\n" \
+    "extension=phalcon.so" \
+    "display_errors=1" \
+    "display_startup_errors=1" \
+    "error_reporting=E_ALL" \
+    "log_errors=1" \
+    "error_log=/proc/self/fd/2" \
+    > /usr/local/lib/php.ini
+
 WORKDIR /var/www
 
 RUN git config --global --add safe.directory /var/www
 
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "public", "public/index.php"]

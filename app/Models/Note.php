@@ -5,45 +5,41 @@ declare(strict_types=1);
 namespace NoteForge\Models;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Behavior\Timestampable;
-use Phalcon\Validation;
-use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Filter\Validation;
+use Phalcon\Filter\Validation\Validator\PresenceOf;
 
 final class Note extends Model
 {
-    public ?int $id = null;
+    public $id = null;
 
-    public string $title = '';
+    public $title = '';
 
-    public string $slug = '';
+    public $slug = '';
 
-    public string $content = '';
+    public $content = '';
 
-    public ?string $created_at = null;
+    public $created_at = null;
 
-    public ?string $updated_at = null;
+    public $updated_at = null;
 
     public function initialize(): void
     {
         $this->setSource('notes');
 
-        $this->addBehavior(
-            new Timestampable([
-                'beforeCreate' => [
-                    'field' => 'created_at',
-                    'format' => 'Y-m-d H:i:sP',
-                ],
-            ])
-        );
+        $this->skipAttributesOnCreate(['id']);
+    }
 
-        $this->addBehavior(
-            new Timestampable([
-                'beforeSave' => [
-                    'field' => 'updated_at',
-                    'format' => 'Y-m-d H:i:sP',
-                ],
-            ])
-        );
+    public function beforeValidationOnCreate(): void
+    {
+        $now = date('Y-m-d H:i:sP');
+
+        $this->created_at = $now;
+        $this->updated_at = $now;
+    }
+
+    public function beforeValidationOnUpdate(): void
+    {
+        $this->updated_at = date('Y-m-d H:i:sP');
     }
 
     public function validation(): bool
@@ -54,6 +50,13 @@ final class Note extends Model
             'title',
             new PresenceOf([
                 'message' => 'Title is required',
+            ])
+        );
+
+        $validation->add(
+            'slug',
+            new PresenceOf([
+                'message' => 'Slug is required',
             ])
         );
 
