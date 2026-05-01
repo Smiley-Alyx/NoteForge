@@ -17,9 +17,9 @@ if (is_file(dirname(__DIR__) . '/.env')) {
 
 $loader = new Loader();
 $loader->setNamespaces([
-    'NoteForge\\Controllers' => dirname(__DIR__) . '/app/controllers/',
-    'NoteForge\\Models' => dirname(__DIR__) . '/app/models/',
-    'NoteForge\\Services' => dirname(__DIR__) . '/app/services/',
+    'NoteForge\\Controllers' => dirname(__DIR__) . '/app/Controllers/',
+    'NoteForge\\Models' => dirname(__DIR__) . '/app/Models/',
+    'NoteForge\\Services' => dirname(__DIR__) . '/app/Services/',
 ]);
 $loader->register();
 

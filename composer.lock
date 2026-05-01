@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53779c2fc7d58f838676213857824141",
+    "content-hash": "a9fdf7afb8ba85e061d79f082a1fbfad",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -67,6 +67,57 @@
                 }
             ],
             "time": "2025-12-27T19:43:20+00:00"
+        },
+        {
+            "name": "markforge/markforge",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Smiley-Alyx/markforge.git",
+                "reference": "b037ab64c5b590db5ef63713b0be559202bfc1c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Smiley-Alyx/markforge/zipball/b037ab64c5b590db5ef63713b0be559202bfc1c6",
+                "reference": "b037ab64c5b590db5ef63713b0be559202bfc1c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarkForge\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "MarkForge\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "MarkForge — Markdown to HTML parser for PHP 8.3+ (AST-based, extensible).",
+            "keywords": [
+                "html",
+                "markdown",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/Smiley-Alyx/markforge/issues",
+                "source": "https://github.com/Smiley-Alyx/markforge"
+            },
+            "time": "2026-03-15T09:02:22+00:00"
         },
         {
             "name": "phpoption/phpoption",

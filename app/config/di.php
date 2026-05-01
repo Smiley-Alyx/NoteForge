@@ -6,10 +6,15 @@ use Phalcon\Di\Di;
 use Phalcon\Di\DiInterface;
 use Phalcon\Db\Adapter\Pdo\Postgresql;
 use Phalcon\Mvc\View;
+use NoteForge\Services\MarkdownService;
 
 return static function (DiInterface $di): void {
     $di->setShared('config', static function () {
         return require dirname(__DIR__) . '/config/config.php';
+    });
+
+    $di->setShared('markdown', static function () {
+        return new MarkdownService();
     });
 
     $di->setShared('db', static function () use ($di) {
