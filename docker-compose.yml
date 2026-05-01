@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: noteforge
+      POSTGRES_USER: noteforge
+      POSTGRES_PASSWORD: noteforge
+    ports:
+      - "5432:5432"
+    volumes:
+      - noteforge_pg_data:/var/lib/postgresql/data
+
+volumes:
+  noteforge_pg_data:
